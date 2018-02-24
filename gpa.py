@@ -33,25 +33,8 @@ from keras.layers import Dropout #dropout to regulate when some of the neuron be
 
 # Importing the dataset
 dataset = pd.read_csv('gpa.csv')
-X = dataset.iloc[:, 1:13].values #independent variables
-y = dataset.iloc[:, 13].values #dependent variable, exited
-
-
-
-# Encoding categorical data, for example country or gender
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-#for country making it into categories or number
-labelencoder_X_1 = LabelEncoder()
-X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
-#for gender
-labelencoder_X_2 = LabelEncoder()
-X[:, 2] = labelencoder_X_2.fit_transform(X[:, 2])
-
-# X is the array of independent variables
-onehotencoder = OneHotEncoder(categorical_features = [1])
-X = onehotencoder.fit_transform(X).toarray()
-X = X[:, 1:]
-
+X = dataset.iloc[:, [0,1,2,4,5,6,7,8,9,10,11,12]].values #independent variables
+y = dataset.iloc[:, 3].values #dependent variable, exited
 
 
 # Splitting the dataset into the Training set and Test set
